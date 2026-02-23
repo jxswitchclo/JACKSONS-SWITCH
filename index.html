@@ -1,0 +1,447 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JACKSONS SWITCH CLOTHING</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Anton', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            black: '#000000',
+                            white: '#ffffff',
+                            gray: '#f4f4f4',
+                            darkgray: '#1a1a1a'
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .img-zoom-container {
+            overflow: hidden;
+        }
+
+        .img-zoom {
+            transition: transform 0.7s ease;
+        }
+
+        .img-zoom-container:hover .img-zoom {
+            transform: scale(1.05);
+        }
+
+        /* Overlay for mobile menu */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-brand-white text-brand-black overflow-x-hidden selection:bg-brand-black selection:text-brand-white">
+
+    <!-- Announcement Bar -->
+    <div class="bg-brand-black text-brand-white text-xs font-medium text-center py-2 tracking-widest uppercase">
+        Free Worldwide Shipping on orders over $250
+    </div>
+
+    <!-- Header -->
+    <header id="main-header" class="fixed w-full top-[32px] z-50 transition-all duration-300 bg-transparent text-brand-white py-4 px-6 md:px-12">
+        <div class="flex items-center justify-between">
+            <!-- Mobile Menu Toggle -->
+            <div class="md:hidden flex-1">
+                <button id="menu-toggle" class="text-xl focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Desktop Nav Left -->
+            <nav class="hidden md:flex flex-1 space-x-8 text-sm font-medium tracking-wide uppercase">
+                <a href="#" class="nav-link">Shop</a>
+                <a href="#" class="nav-link">Collections</a>
+                <a href="#" class="nav-link">About</a>
+            </nav>
+
+            <!-- Logo -->
+            <div class="flex-1 text-center flex justify-center">
+                <a href="#" class="font-display text-2xl md:text-4xl tracking-widest whitespace-nowrap">
+                    JACKSONS SWITCH
+                </a>
+            </div>
+
+            <!-- Nav Right (Icons) -->
+            <div class="flex-1 flex justify-end space-x-6 text-lg">
+                <button class="hover:opacity-70 transition-opacity"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="hover:opacity-70 transition-opacity hidden md:block"><i class="fa-regular fa-user"></i></button>
+                <button class="hover:opacity-70 transition-opacity relative">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="absolute -top-2 -right-2 bg-brand-white text-brand-black text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center border border-current header-cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-white z-[60] transform -translate-x-full flex flex-col pt-20 px-6 pb-6">
+        <button id="close-menu" class="absolute top-6 right-6 text-2xl text-brand-black">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <nav class="flex flex-col space-y-6 text-2xl font-display tracking-wider text-brand-black">
+            <a href="#" class="hover:text-gray-500 transition-colors">SHOP ALL</a>
+            <a href="#" class="hover:text-gray-500 transition-colors">NEW ARRIVALS</a>
+            <a href="#" class="hover:text-gray-500 transition-colors">TEES</a>
+            <a href="#" class="hover:text-gray-500 transition-colors">HOODIES</a>
+            <a href="#" class="hover:text-gray-500 transition-colors">BOTTOMS</a>
+            <a href="#" class="hover:text-gray-500 transition-colors">ABOUT US</a>
+        </nav>
+        <div class="mt-auto flex space-x-6 text-brand-black text-xl">
+            <a href="#"><i class="fa-regular fa-user"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen w-full bg-brand-darkgray flex items-center justify-center animate-fade-in">
+        <!-- Using a high-quality urban fashion image -->
+        <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&q=80&w=2000" alt="Jackson Switch Campaign" class="absolute inset-0 w-full h-full object-cover object-top opacity-80 mix-blend-overlay">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+        
+        <div class="relative z-10 text-center px-4 flex flex-col items-center mt-20 opacity-0 animate-slide-up" style="animation-delay: 0.3s;">
+            <h1 class="font-display text-5xl md:text-8xl text-brand-white tracking-widest uppercase mb-4 drop-shadow-lg">The Initial Collection</h1>
+            <p class="text-brand-white text-sm md:text-base tracking-widest uppercase mb-8 font-medium">Redefining Modern Streetwear</p>
+            <a href="#" class="bg-brand-white text-brand-black px-10 py-4 font-medium tracking-widest uppercase text-sm hover:bg-brand-black hover:text-brand-white transition-colors duration-300 border border-brand-white">
+                Shop Collection
+            </a>
+        </div>
+    </section>
+
+    <!-- Scrolling Marquee -->
+    <div class="bg-brand-black text-brand-white py-3 overflow-hidden border-t border-b border-gray-800">
+        <div class="whitespace-nowrap inline-block animate-[marquee_20s_linear_infinite]">
+            <span class="mx-4 text-xs tracking-widest font-medium uppercase">JACKSONS SWITCH CLOTHING</span>
+            <span class="mx-4 text-xs tracking-widest font-medium uppercase text-gray-500">•</span>
+            <span class="mx-4 text-xs tracking-widest font-medium uppercase">NEW ARRIVALS LIVE</span>
+            <span class="mx-4 text-xs tracking-widest font-medium uppercase text-gray-500">•</span>
+            <span class="mx-4 text-xs tracking-widest font-medium uppercase">WORLDWIDE SHIPPING</span>
+            <span class="mx-4 text-xs tracking-widest font-medium uppercase text-gray-500">•</span>
+            <span class="mx-4 text-xs tracking-widest font-medium uppercase">JACKSONS SWITCH CLOTHING</span>
+            <span class="mx-4 text-xs tracking-widest font-medium uppercase text-gray-500">•</span>
+            <span class="mx-4 text-xs tracking-widest font-medium uppercase">NEW ARRIVALS LIVE</span>
+            <span class="mx-4 text-xs tracking-widest font-medium uppercase text-gray-500">•</span>
+            <span class="mx-4 text-xs tracking-widest font-medium uppercase">WORLDWIDE SHIPPING</span>
+        </div>
+    </div>
+    <style>
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+    </style>
+
+    <!-- New Arrivals Carousel -->
+    <section class="py-16 md:py-24 px-6 md:px-12 max-w-[1600px] mx-auto">
+        <div class="flex justify-between items-end mb-8">
+            <h2 class="font-display text-3xl md:text-4xl tracking-wider">LATEST DROPS</h2>
+            <a href="#" class="text-sm font-medium tracking-wide underline underline-offset-4 hover:text-gray-500 transition-colors uppercase hidden md:block">View All</a>
+        </div>
+        
+        <!-- Carousel Container -->
+        <div class="flex overflow-x-auto space-x-4 md:space-x-6 pb-8 no-scrollbar snap-x">
+            
+            <!-- Product Card 1 -->
+            <div class="min-w-[280px] md:min-w-[350px] snap-start group cursor-pointer">
+                <div class="relative bg-brand-gray aspect-[3/4] mb-4 img-zoom-container">
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&q=80&w=800" alt="Oversized Hoodie" class="w-full h-full object-cover object-center img-zoom">
+                    <!-- Quick Add Button (Visible on hover desktop) -->
+                    <div class="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
+                        <button class="w-full bg-brand-white text-brand-black py-3 text-xs font-bold tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">Quick Add</button>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <p class="text-[10px] text-gray-500 tracking-widest uppercase mb-1 font-semibold">Jacksons Switch</p>
+                    <h3 class="text-sm font-medium mb-1">Heavyweight Studio Hoodie</h3>
+                    <p class="text-sm text-gray-600 font-medium">$125.00</p>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="min-w-[280px] md:min-w-[350px] snap-start group cursor-pointer">
+                <div class="relative bg-brand-gray aspect-[3/4] mb-4 img-zoom-container">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80&w=800" alt="Graphic Tee" class="w-full h-full object-cover object-center img-zoom">
+                    <div class="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
+                        <button class="w-full bg-brand-white text-brand-black py-3 text-xs font-bold tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">Quick Add</button>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <p class="text-[10px] text-gray-500 tracking-widest uppercase mb-1 font-semibold">Jacksons Switch</p>
+                    <h3 class="text-sm font-medium mb-1">Box Fit 'Switch' Tee - Washed Black</h3>
+                    <p class="text-sm text-gray-600 font-medium">$65.00</p>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="min-w-[280px] md:min-w-[350px] snap-start group cursor-pointer">
+                <div class="relative bg-brand-gray aspect-[3/4] mb-4 img-zoom-container">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&q=80&w=800" alt="Cargo Pants" class="w-full h-full object-cover object-center img-zoom">
+                    <div class="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
+                        <button class="w-full bg-brand-white text-brand-black py-3 text-xs font-bold tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">Quick Add</button>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <p class="text-[10px] text-gray-500 tracking-widest uppercase mb-1 font-semibold">Jacksons Switch</p>
+                    <h3 class="text-sm font-medium mb-1">Tactical Cargo Pant - Olive</h3>
+                    <p class="text-sm text-gray-600 font-medium">$150.00</p>
+                </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="min-w-[280px] md:min-w-[350px] snap-start group cursor-pointer">
+                <div class="relative bg-brand-gray aspect-[3/4] mb-4 img-zoom-container">
+                    <img src="https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&q=80&w=800" alt="Varsity Jacket" class="w-full h-full object-cover object-center img-zoom">
+                    <div class="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
+                        <button class="w-full bg-brand-white text-brand-black py-3 text-xs font-bold tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">Quick Add</button>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <p class="text-[10px] text-gray-500 tracking-widest uppercase mb-1 font-semibold">Jacksons Switch</p>
+                    <h3 class="text-sm font-medium mb-1">Wool Varsity Bomber</h3>
+                    <p class="text-sm text-gray-600 font-medium">$280.00</p>
+                </div>
+            </div>
+            
+        </div>
+        <div class="mt-4 text-center md:hidden">
+            <a href="#" class="text-sm font-medium tracking-wide underline underline-offset-4 uppercase">View All</a>
+        </div>
+    </section>
+
+    <!-- Grid Categories -->
+    <section class="px-4 md:px-6 pb-16 md:pb-24 max-w-[1600px] mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <!-- Category 1 -->
+            <div class="relative h-[60vh] md:h-[80vh] group overflow-hidden cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1492288991661-058aa541ff43?auto=format&fit=crop&q=80&w=1000" alt="Tops Category" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
+                <div class="absolute inset-0 flex flex-col items-center justify-center text-brand-white p-6">
+                    <h2 class="font-display text-4xl md:text-6xl tracking-widest uppercase mb-4">Tops</h2>
+                    <a href="#" class="border-b-2 border-brand-white pb-1 text-sm font-medium tracking-widest uppercase hover:text-gray-300 hover:border-gray-300 transition-colors">Explore</a>
+                </div>
+            </div>
+            <!-- Category 2 -->
+            <div class="relative h-[60vh] md:h-[80vh] group overflow-hidden cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1509319117193-57bab727e09d?auto=format&fit=crop&q=80&w=1000" alt="Bottoms Category" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
+                <div class="absolute inset-0 flex flex-col items-center justify-center text-brand-white p-6">
+                    <h2 class="font-display text-4xl md:text-6xl tracking-widest uppercase mb-4">Bottoms</h2>
+                    <a href="#" class="border-b-2 border-brand-white pb-1 text-sm font-medium tracking-widest uppercase hover:text-gray-300 hover:border-gray-300 transition-colors">Explore</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lookbook / Campaign Full Width -->
+    <section class="relative py-24 md:py-32 bg-brand-black text-brand-white overflow-hidden">
+        <div class="absolute inset-0 opacity-40">
+             <img src="https://images.unsplash.com/photo-1617331140180-e8262094733a?auto=format&fit=crop&q=80&w=2000" alt="Campaign Texture" class="w-full h-full object-cover grayscale">
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            <h2 class="font-display text-3xl md:text-5xl tracking-widest uppercase mb-6">Built For The Switch</h2>
+            <p class="text-sm md:text-base text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                Jacksons Switch represents the duality of modern urban life. Premium fabrics engineered for comfort, cut with a disruptive aesthetic. We don't follow trends, we switch the narrative. Designed in the city, made for the world.
+            </p>
+            <a href="#" class="inline-block bg-brand-white text-brand-black px-8 py-3 text-xs font-bold tracking-widest uppercase hover:bg-gray-200 transition-colors">Read Our Story</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-black text-brand-white pt-16 pb-8 border-t border-gray-800">
+        <div class="max-w-[1600px] mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-6 mb-16">
+                
+                <!-- Newsletter -->
+                <div class="md:col-span-5 md:pr-12">
+                    <h3 class="font-display text-2xl tracking-widest uppercase mb-4">Join The Club</h3>
+                    <p class="text-gray-400 text-sm mb-6">Sign up to receive updates on new arrivals, exclusive access, and early drops.</p>
+                    <form class="flex border-b border-gray-600 pb-2">
+                        <input type="email" placeholder="Email Address" class="bg-transparent w-full text-sm focus:outline-none placeholder-gray-500 text-brand-white">
+                        <button type="submit" class="text-sm font-medium tracking-wider uppercase hover:text-gray-400 transition-colors">Sign Up</button>
+                    </form>
+                </div>
+
+                <!-- Links -->
+                <div class="md:col-span-2">
+                    <h4 class="text-xs font-bold tracking-widest uppercase text-gray-500 mb-6">Shop</h4>
+                    <ul class="space-y-4 text-sm text-gray-300">
+                        <li><a href="#" class="hover:text-brand-white transition-colors">New Arrivals</a></li>
+                        <li><a href="#" class="hover:text-brand-white transition-colors">All Clothing</a></li>
+                        <li><a href="#" class="hover:text-brand-white transition-colors">Tees</a></li>
+                        <li><a href="#" class="hover:text-brand-white transition-colors">Hoodies & Sweats</a></li>
+                        <li><a href="#" class="hover:text-brand-white transition-colors">Accessories</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-2">
+                    <h4 class="text-xs font-bold tracking-widest uppercase text-gray-500 mb-6">Support</h4>
+                    <ul class="space-y-4 text-sm text-gray-300">
+                        <li><a href="#" class="hover:text-brand-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-brand-white transition-colors">Shipping</a></li>
+                        <li><a href="#" class="hover:text-brand-white transition-colors">Returns</a></li>
+                        <li><a href="#" class="hover:text-brand-white transition-colors">Size Guide</a></li>
+                        <li><a href="#" class="hover:text-brand-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-3">
+                    <h4 class="text-xs font-bold tracking-widest uppercase text-gray-500 mb-6">Social</h4>
+                    <div class="flex space-x-6 text-xl">
+                        <a href="#" class="text-gray-400 hover:text-brand-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-brand-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-brand-white transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-brand-white transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-800 text-xs text-gray-500">
+                <div class="mb-4 md:mb-0">
+                    &copy; 2023 JACKSONS SWITCH CLOTHING. ALL RIGHTS RESERVED.
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-gray-300">Privacy Policy</a>
+                    <a href="#" class="hover:text-gray-300">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.getElementById('main-header');
+            const cartCount = document.querySelector('.header-cart-count');
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // Scroll Effect for Header
+            window.addEventListener('scroll', () => {
+                // Determine point where header changes (height of announcement bar approx)
+                if (window.scrollY > 40) {
+                    header.classList.remove('bg-transparent', 'text-brand-white', 'top-[32px]');
+                    header.classList.add('bg-brand-white', 'text-brand-black', 'shadow-sm', 'top-0');
+                    // Change cart count colors for light bg
+                    cartCount.classList.remove('bg-brand-white', 'text-brand-black');
+                    cartCount.classList.add('bg-brand-black', 'text-brand-white');
+                } else {
+                    header.classList.add('bg-transparent', 'text-brand-white', 'top-[32px]');
+                    header.classList.remove('bg-brand-white', 'text-brand-black', 'shadow-sm', 'top-0');
+                    // Revert cart count colors for dark bg
+                    cartCount.classList.add('bg-brand-white', 'text-brand-black');
+                    cartCount.classList.remove('bg-brand-black', 'text-brand-white');
+                }
+            });
+
+            // Mobile Menu Logic
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.remove('-translate-x-full');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+
+            closeMenu.addEventListener('click', () => {
+                mobileMenu.classList.add('-translate-x-full');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+
+            // Quick add to cart simulation
+            const quickAddBtns = document.querySelectorAll('button:contains("Quick Add")');
+            // Using a workaround since :contains isn't standard JS querySelector
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => {
+                if(btn.textContent === 'Quick Add') {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const currentCount = parseInt(cartCount.textContent);
+                        cartCount.textContent = currentCount + 1;
+                        
+                        // Button feedback
+                        const originalText = btn.textContent;
+                        btn.textContent = 'ADDED';
+                        btn.classList.add('bg-green-600', 'text-white', 'border-green-600');
+                        btn.classList.remove('bg-brand-white', 'text-brand-black', 'hover:bg-brand-black');
+                        
+                        setTimeout(() => {
+                            btn.textContent = originalText;
+                            btn.classList.remove('bg-green-600', 'text-white', 'border-green-600');
+                            btn.classList.add('bg-brand-white', 'text-brand-black', 'hover:bg-brand-black');
+                        }, 1500);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+```
